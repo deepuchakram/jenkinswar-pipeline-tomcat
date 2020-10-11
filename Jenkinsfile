@@ -24,7 +24,8 @@ node{
 '''
    }*/
    stage('Deploy to Tomcat'){
-     shell "copy target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
+      shell "mvn clean install"
+		shell "cp target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
    }
       stage ('Start Tomcat Server') {
          sleep(time:5,unit:"SECONDS") 
