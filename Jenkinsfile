@@ -8,27 +8,27 @@ node{
    }
    stage('Compile-Package-create-war-file'){
       // Get maven home path
-      def mvnHome =  tool name: 'maven -3.5.2', type: 'maven'   
-      bat "${mvnHome}/bin/mvn package"
+      def mvnHome =  tool name: 'maven-3', type: 'maven'   
+      shell "${mvnHome}/bin/mvn package"
       }
 /*   stage ('Stop Tomcat Server') {
-               bat ''' @ECHO OFF
+               shell ''' @ECHO OFF
                wmic process list brief | find /i "tomcat" > NUL
                IF ERRORLEVEL 1 (
                     echo  Stopped
                ) ELSE (
                echo running
-                  "${tomcatBin}\\shutdown.bat"
+                  "${tomcatBin}\\shutdown.sh"
                   sleep(time:10,unit:"SECONDS") 
                )
 '''
    }*/
    stage('Deploy to Tomcat'){
-     bat "copy target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
+     shell "copy target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
    }
       stage ('Start Tomcat Server') {
          sleep(time:5,unit:"SECONDS") 
-         bat "${tomcatBin}\\startup.bat"
+         shell "${tomcatBin}\\startup.sh"
          sleep(time:100,unit:"SECONDS")
    }
 }
