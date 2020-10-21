@@ -8,7 +8,7 @@ node{
    }
 	stage('SonarQube analysis') {
             steps {
-                shell "D:\SOFTWARES\sonarqube-7.9.3\sonarqube-7.9.3"
+                shell "D:/SOFTWARES/sonarqube-7.9.3/sonarqube-7.9.3"
 		
             }
    stage('Compile-Package-create-war-file'){
