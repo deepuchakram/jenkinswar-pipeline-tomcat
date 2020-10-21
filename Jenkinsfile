@@ -6,21 +6,11 @@ node{
    stage('SCM Checkout'){
      git 'https://github.com/deepuchakram/jenkinswar-pipeline-tomcat.git'
    }
-	stage("build & SonarQube analysis") {
-            agent any
+	stage('SonarQube analysis') {
             steps {
-              withSonarQubeEnv('My SonarQube Server') {
-                sh 'mvn clean package sonar:sonar'
-              }
+                shell "D:\SOFTWARES\sonarqube-7.9.3\sonarqube-7.9.3"
+		
             }
-          }
-          stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
-            }
-          }
    stage('Compile-Package-create-war-file'){
       // Get maven home path
       def mvnHome =  tool name: 'Maven', type: 'maven'   
