@@ -7,10 +7,8 @@ node{
      git 'https://github.com/deepuchakram/jenkinswar-pipeline-tomcat.git'
    }
 	stage('SonarQube analysis') {
-            steps {
-                shell "D:/SOFTWARES/sonarqube-7.9.3/sonarqube-7.9.3"
-	    }
-		
+	shell "D:/SOFTWARES/sonarqube-7.9.3/sonarqube-7.9.3"
+	   		
             }
    stage('Compile-Package-create-war-file'){
       // Get maven home path
